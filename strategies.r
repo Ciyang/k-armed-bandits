@@ -11,6 +11,9 @@
 # In this sense, the action-value methods all share 
 # the same belief revision rule.
 
+action.value <- function(oldvals, action, reward, nth){
+}
+
 
 
 
