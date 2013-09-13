@@ -12,7 +12,32 @@
 # the same belief revision rule.
 
 action.value <- function(oldvals, action, reward, nth){
+    #Take as input the vector of old expected values, the current action
+    #and reward, and the times this action has been chosen
+
+    oldvals[action] <- oldvals[action] + (reward - oldvals[action])/nth
+    return(oldvals)
 }
+
+
+#Greedy rule always chooses the (first) current optimal action
+greedy <- function(vals){
+    return( which.max(vals) )
+}
+
+#Epsilon greedy rule has probability epsilon to randomly choose a 
+#non-optimal action
+
+eps.greedy <- function(vals,eps){
+    optimal = which.max(vals)
+    if (runif(1) >= eps){
+        return(optimal)
+    }
+    return( sample( (1:length(vals))[-optimal] ,1) )
+}
+
+#Softmax
+
 
 
 
